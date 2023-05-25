@@ -1,0 +1,46 @@
+<style>
+    img{-webkit-user-drag:none;}        
+    /* ne lehessen elhuzni a kepet */
+
+    body {
+  background-color: rgb(178, 227, 228);
+}
+</style>
+
+<body></body>
+
+
+<script>
+
+let horses =[]                                  // a kepek tombje a mozgatashoz
+
+document.addEventListener('click', makeHorse)   //esemely figyelo, mit hivjon meg es milyen fuggvenyt
+
+function makeHorse (event){
+    let horse = document.createElement('img')
+    horse.src = 'horse.gif'
+
+    document.body.appendChild(horse)            //elhelyezzuk az oldalon a kepet
+   
+    horse.style.position= 'absolute'            // midentol fuggetlenul legyen a kep elhelyezve
+    horse.style.top= event.clientY -150         
+    horse.style.left = event.clientX -200      // az elem hol legyen, es az eger pozicioja
+
+    horse.style.filter = 'contrast('+Math.random()+')'  //css-sel allitjuk a kepek vilagossasgat
+    horse.style.filter += 'brightness('+Math.random()+')'   //es kontrasztjat
+
+    horses.push(horse)                      // az elemeket egy tombe pusholjuk a mozgatas vegett
+}
+
+function move (){                           // a lovakat mozgato fuggveny
+    for(let i=0;i<horses.length;i++){       //  4 pixellel mozgatja a kepet jobbra
+        horses[i].style.left= parseInt(horses[i].style.left)+4
+    }
+}
+
+
+setInterval(move, 10) //setInterval mozgatja a lovakat 10 ezered maspodpercenkent a move fuggvennyel
+
+
+
+</script>
